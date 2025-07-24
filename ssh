@@ -1,0 +1,5 @@
+wsl_ip=$(wsl hostname -I | awk '{print $1}')
+netsh interface portproxy add v4tov4 listenport=22 listenaddress=0.0.0.0 connectport=22 connectaddress=$wsl_ip
+
+
+             netsh advfirewall firewall add rule name="WSL SSH" dir=in action=allow protocol=TCP localport=22
